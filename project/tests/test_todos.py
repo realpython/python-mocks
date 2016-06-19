@@ -1,9 +1,13 @@
+# Standard library imports...
+from unittest import skipIf
+from unittest.mock import Mock, patch
+
 # Third-party imports...
-from mock import Mock, patch
 from nose.tools import assert_is_none, assert_list_equal, assert_true
 
 # Local imports...
 from project.services import get_todos, get_uncompleted_todos
+from project.constants import SKIP_REAL
 
 
 class TestTodos(object):
@@ -96,15 +100,6 @@ class TestUncompletedTodos(object):
 
         # Confirm that an empty list was returned.
         assert_list_equal(uncompleted_todos, [])
-
-
-
-
-# Standard library imports...
-from unittest import skipIf
-
-# Local imports...
-from project.constants import SKIP_REAL
 
 
 @skipIf(SKIP_REAL, 'Skipping tests that hit the real API server.')
